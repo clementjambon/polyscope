@@ -49,6 +49,8 @@ struct QuantityTypeHelper<SurfaceMesh> {
   typedef SurfaceMeshQuantity type;
 };
 
+enum SurfacePickType { VERTEX, FACE, EDGE, HALFEDGE };
+
 
 // === The grand surface mesh class
 
@@ -291,6 +293,7 @@ public:
   SurfaceMesh* setSmoothShade(bool isSmooth);
   bool isSmoothShade();
 
+  void setUserPickCallback(std::function<void(int, int)> func) { userPickCallback = func; }
 
 private:
   // == Mesh geometry buffers
@@ -414,6 +417,9 @@ private:
   SurfaceOneFormTangentVectorQuantity* addOneFormTangentVectorQuantityImpl(std::string name, const std::vector<float>& data, const std::vector<char>& orientations);
 
   // === Helper implementations
+
+  // Callback when the user clicks on the mesh
+  std::function<void(int, int)> userPickCallback = nullptr;
 
   // clang-format on
 };

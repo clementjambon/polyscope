@@ -1049,12 +1049,25 @@ void SurfaceMesh::buildPickUI(size_t localPickID) {
   // Selection type
   if (localPickID < facePickIndStart) {
     buildVertexInfoGui(localPickID);
+    if (this->userPickCallback) {
+      this->userPickCallback((int)SurfacePickType::VERTEX, (int)localPickID);
+    }
   } else if (localPickID < edgePickIndStart) {
     buildFaceInfoGui(localPickID - facePickIndStart);
+    if (this->userPickCallback) {
+      this->userPickCallback((int)SurfacePickType::FACE, (int)(localPickID - facePickIndStart));
+    }
   } else if (localPickID < halfedgePickIndStart) {
     buildEdgeInfoGui(localPickID - edgePickIndStart);
+    if (this->userPickCallback) {
+      this->userPickCallback((int)SurfacePickType::EDGE, (int)(localPickID - edgePickIndStart));
+    }
   } else if (localPickID < cornerPickIndStart) {
     buildHalfedgeInfoGui(localPickID - halfedgePickIndStart);
+
+    if (this->userPickCallback) {
+      this->userPickCallback((int)SurfacePickType::HALFEDGE, (int)(localPickID - halfedgePickIndStart));
+    }
 
     if (edgesHaveBeenUsed) {
       // do the edge one too (see not in pick buffer filler)
