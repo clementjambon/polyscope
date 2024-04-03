@@ -504,22 +504,22 @@ void purgeWidgets() {
 
 void userGuiBegin() {
 
-  ImVec2 userGuiLoc;
-  if (options::userGuiIsOnRightSide) {
-    // right side
-    userGuiLoc = ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin), imguiStackMargin);
-    ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, 0.));
-  } else {
-    // left side
-    if (options::buildDefaultGuiPanels) {
-      userGuiLoc = ImVec2(leftWindowsWidth + 3 * imguiStackMargin, imguiStackMargin);
-    } else {
-      userGuiLoc = ImVec2(imguiStackMargin, imguiStackMargin);
-    }
-  }
+  // ImVec2 userGuiLoc;
+  // if (options::userGuiIsOnRightSide) {
+  //   // right side
+  //   userGuiLoc = ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin), imguiStackMargin);
+  //   ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, 0.));
+  // } else {
+  //   // left side
+  //   if (options::buildDefaultGuiPanels) {
+  //     userGuiLoc = ImVec2(leftWindowsWidth + 3 * imguiStackMargin, imguiStackMargin);
+  //   } else {
+  //     userGuiLoc = ImVec2(imguiStackMargin, imguiStackMargin);
+  //   }
+  // }
 
   ImGui::PushID("user_callback");
-  ImGui::SetNextWindowPos(userGuiLoc);
+  // ImGui::SetNextWindowPos(userGuiLoc);
 
   ImGui::Begin("##Command UI", nullptr);
 }
