@@ -76,6 +76,7 @@ public:
   virtual void buildCustomUI() override;
   virtual void buildCustomOptionsUI() override;
   virtual void buildPickUI(size_t localPickID) override;
+  virtual void callbackPickUI(size_t localPickID) override;
 
   // Render the the structure on screen
   virtual void draw() override;

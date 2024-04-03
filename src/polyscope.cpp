@@ -729,19 +729,24 @@ void buildStructureGui() {
 void buildPickGui() {
   if (pick::haveSelection()) {
 
-    ImGui::SetNextWindowPos(ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin),
-    2 * imguiStackMargin + lastWindowHeightUser));
-    ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, 0.));
+    // ImGui::SetNextWindowPos(ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin),
+    // 2 * imguiStackMargin + lastWindowHeightUser));
+    // ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, 0.));
 
-    ImGui::Begin("Selection", nullptr);
+    // ImGui::Begin("Selection", nullptr);
+    // std::pair<Structure*, size_t> selection = pick::getSelection();
+
+    // ImGui::TextUnformatted((selection.first->typeName() + ": " + selection.first->name).c_str());
+    // ImGui::Separator();
+    // selection.first->buildPickUI(selection.second);
+
+    // rightWindowsWidth = ImGui::GetWindowWidth();
+    // ImGui::End();
+
+    // Simply call `callbackPickUI` instead of showing the selection
+    // TODO: replace this with a long-term solution
     std::pair<Structure*, size_t> selection = pick::getSelection();
-
-    ImGui::TextUnformatted((selection.first->typeName() + ": " + selection.first->name).c_str());
-    ImGui::Separator();
-    selection.first->buildPickUI(selection.second);
-
-    rightWindowsWidth = ImGui::GetWindowWidth();
-    ImGui::End();
+    selection.first->callbackPickUI(selection.second);
   }
 }
 
