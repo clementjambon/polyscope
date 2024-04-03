@@ -661,9 +661,9 @@ void buildStructureGui() {
   // Create window
   static bool showStructureWindow = true;
 
-  ImGui::SetNextWindowPos(ImVec2(imguiStackMargin, lastWindowHeightPolyscope + 2 * imguiStackMargin));
-  ImGui::SetNextWindowSize(
-      ImVec2(leftWindowsWidth, view::windowHeight - lastWindowHeightPolyscope - 3 * imguiStackMargin));
+  // ImGui::SetNextWindowPos(ImVec2(imguiStackMargin, lastWindowHeightPolyscope + 2 * imguiStackMargin));
+  // ImGui::SetNextWindowSize(
+  //     ImVec2(leftWindowsWidth, view::windowHeight - lastWindowHeightPolyscope - 3 * imguiStackMargin));
   ImGui::Begin("Structures", &showStructureWindow);
 
   // only show groups if there are any
@@ -730,7 +730,7 @@ void buildPickGui() {
   if (pick::haveSelection()) {
 
     ImGui::SetNextWindowPos(ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin),
-                                   2 * imguiStackMargin + lastWindowHeightUser));
+    2 * imguiStackMargin + lastWindowHeightUser));
     ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, 0.));
 
     ImGui::Begin("Selection", nullptr);
