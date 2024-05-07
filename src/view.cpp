@@ -35,6 +35,7 @@ double nearClipRatio = defaultNearClipRatio;
 double farClipRatio = defaultFarClipRatio;
 ProjectionMode projectionMode = ProjectionMode::Perspective;
 std::array<float, 4> bgColor{{1.0, 1.0, 1.0, 0.0}};
+std::function<void(std::string)> dropCallback = nullptr;
 
 glm::mat4x4 viewMat;
 

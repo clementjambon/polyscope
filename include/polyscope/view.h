@@ -4,6 +4,7 @@
 
 #include <array>
 #include <string>
+#include <functional>
 
 #include "polyscope/camera_parameters.h"
 #include "polyscope/types.h"
@@ -50,6 +51,8 @@ extern double moveScale;
 extern double nearClipRatio;
 extern double farClipRatio;
 extern std::array<float, 4> bgColor;
+
+extern std::function<void(std::string)> dropCallback;
 
 // Current view camera parameters
 // TODO deprecate these one day, and just use a CameraParameters member instead. But this would break existing code, so
