@@ -340,4 +340,8 @@ bool Structure::getIgnoreSlicePlane(std::string name) {
   return ignoreThisPlane;
 }
 
+void Structure::enableTransformGizmo(bool enabled) {
+  transformGizmo.enabled = enabled;
+}
+
 } // namespace polyscope
