@@ -259,6 +259,12 @@ void PointCloud::callbackPickUI(size_t localPickID) {
   }
 }
 
+void PointCloud::callbackHoverUI(size_t localPickID) {
+  if (this->userHoverCallback) {
+    this->userHoverCallback((int)localPickID);
+  }
+}
+
 void PointCloud::buildCustomUI() {
   ImGui::Text("# points: %lld", static_cast<long long int>(nPoints()));
   if (ImGui::ColorEdit3("Point color", &pointColor.get()[0], ImGuiColorEditFlags_NoInputs)) {

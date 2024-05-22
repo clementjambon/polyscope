@@ -33,6 +33,11 @@ bool haveSelection();
 void resetSelectionIfStructure(Structure* s); // If something from this structure is selected, clear the selection
                                               // (useful if a structure is being deleted)
 
+// Same with Hover
+std::pair<Structure*, size_t> getHover();
+void setHover(std::pair<Structure*, size_t> newPick);
+void resetHover();
+bool haveHover();
 
 // == Helpers
 

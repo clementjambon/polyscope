@@ -51,6 +51,7 @@ public:
   virtual void buildCustomOptionsUI() override;
   virtual void buildPickUI(size_t localPickID) override;
   virtual void callbackPickUI(size_t localPickID) override;
+  virtual void callbackHoverUI(size_t localPickID) override;
 
   // Standard structure overrides
   virtual void draw() override;
@@ -143,6 +144,7 @@ public:
   // === ~DANGER~ experimental/unsupported functions
 
   void setUserPickCallback(std::function<void(int)> func) { userPickCallback = func; }
+  void setUserHoverCallback(std::function<void(int)> func) { userHoverCallback = func; }
 
 private:
   // Storage for the managed buffers above. You should generally interact with this directly through them.
@@ -184,6 +186,7 @@ private:
 
   // Callback when the user clicks on the mesh
   std::function<void(int)> userPickCallback = nullptr;
+  std::function<void(int)> userHoverCallback = nullptr;
 };
 
 

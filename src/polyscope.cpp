@@ -391,6 +391,12 @@ void processInputEvents() {
         }
         dragDistSinceLastRelease = 0.0;
       }
+      // Hover picks
+      // TODO: check that there is a necessity to do this!
+      ImVec2 p = ImGui::GetMousePos();
+      std::pair<Structure*, size_t> pickResult =
+          pick::evaluatePickQuery(io.DisplayFramebufferScale.x * p.x, io.DisplayFramebufferScale.y * p.y);
+      pick::setHover(pickResult);
     }
   }
 
@@ -747,6 +753,11 @@ void buildPickGui() {
     // TODO: replace this with a long-term solution
     std::pair<Structure*, size_t> selection = pick::getSelection();
     selection.first->callbackPickUI(selection.second);
+  }
+
+  if (pick::haveHover()) {
+    std::pair<Structure*, size_t> selection = pick::getHover();
+    selection.first->callbackHoverUI(selection.second);
   }
 }
 

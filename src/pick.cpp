@@ -11,9 +11,15 @@
 namespace polyscope {
 namespace pick {
 
+// Click Pick
 size_t currLocalPickInd = 0;
 Structure* currPickStructure = nullptr;
 bool haveSelectionVal = false;
+
+// Hover
+size_t currLocalHoverInd = 0;
+Structure* currHoverStructure = nullptr;
+bool haveHoverVal = false;
 
 // The next pick index that a structure can use to identify its elements
 // (get it by calling request pickBufferRange())
@@ -58,7 +64,15 @@ void resetSelection() {
   currPickStructure = nullptr;
 }
 
+void resetHover() {
+  haveHoverVal = false;
+  currLocalHoverInd = 0;
+  currHoverStructure = nullptr;
+}
+
 bool haveSelection() { return haveSelectionVal; }
+
+bool haveHover() { return haveHoverVal; }
 
 void resetSelectionIfStructure(Structure* s) {
   if (haveSelectionVal && currPickStructure == s) {
@@ -74,6 +88,14 @@ std::pair<Structure*, size_t> getSelection() {
   }
 }
 
+std::pair<Structure*, size_t> getHover() {
+  if (haveHoverVal) {
+    return {currHoverStructure, currLocalHoverInd};
+  } else {
+    return {nullptr, 0};
+  }
+}
+
 void setSelection(std::pair<Structure*, size_t> newPick) {
   if (newPick.first == nullptr) {
     resetSelection();
@@ -81,6 +103,16 @@ void setSelection(std::pair<Structure*, size_t> newPick) {
     haveSelectionVal = true;
     currPickStructure = newPick.first;
     currLocalPickInd = newPick.second;
+  }
+}
+
+void setHover(std::pair<Structure*, size_t> newPick)  {
+  if (newPick.first == nullptr) {
+    resetHover();
+  } else {
+    haveHoverVal = true;
+    currHoverStructure = newPick.first;
+    currLocalHoverInd = newPick.second;
   }
 }
 

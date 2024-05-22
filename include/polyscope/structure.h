@@ -56,6 +56,7 @@ public:
   virtual void buildSharedStructureUI();  // Draw any UI elements shared between all instances of the structure
   virtual void buildPickUI(size_t localPickID) = 0; // Draw pick UI elements when index localPickID is selected
   virtual void callbackPickUI(size_t localPickID){};
+  virtual void callbackHoverUI(size_t localPickID){};
 
   // = Identifying data
   const std::string name; // should be unique amongst registered structures with this type
