@@ -146,6 +146,8 @@ public:
   void setUserPickCallback(std::function<void(int)> func) { userPickCallback = func; }
   void setUserHoverCallback(std::function<void(int)> func) { userHoverCallback = func; }
 
+  void preKill() { userPickCallback = nullptr; userHoverCallback = nullptr; }
+
 private:
   // Storage for the managed buffers above. You should generally interact with this directly through them.
   std::vector<glm::vec3> pointsData;
