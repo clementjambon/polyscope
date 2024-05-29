@@ -1041,6 +1041,7 @@ void removeStructure(std::string type, std::string name, bool errorIfAbsent) {
     g.second->removeChildStructure(*s);
   }
   pick::resetSelectionIfStructure(s);
+  pick::resetHoverIfStructure(s);
   sMap.erase(s->name);
   updateStructureExtents();
   return;
@@ -1102,6 +1103,7 @@ void removeAllStructures() {
 
   requestRedraw();
   pick::resetSelection();
+  pick::resetHover();
 }
 
 

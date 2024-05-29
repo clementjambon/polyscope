@@ -80,6 +80,12 @@ void resetSelectionIfStructure(Structure* s) {
   }
 }
 
+void resetHoverIfStructure(Structure* s) {
+  if (haveHoverVal && currHoverStructure == s) {
+    resetHover();
+  }
+}
+
 std::pair<Structure*, size_t> getSelection() {
   if (haveSelectionVal) {
     return {currPickStructure, currLocalPickInd};
