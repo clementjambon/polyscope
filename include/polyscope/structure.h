@@ -114,6 +114,7 @@ public:
   
   // Additional control
   void enableTransformGizmo(bool enabled = true);
+  bool isEnabledTransformGizmo();
 
 protected:
   // = State

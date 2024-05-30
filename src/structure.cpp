@@ -344,4 +344,8 @@ void Structure::enableTransformGizmo(bool enabled) {
   transformGizmo.enabled = enabled;
 }
 
+bool Structure::isEnabledTransformGizmo() {
+  return transformGizmo.enabled.get();
+}
+
 } // namespace polyscope
