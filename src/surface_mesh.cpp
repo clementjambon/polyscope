@@ -1092,6 +1092,26 @@ void SurfaceMesh::callbackPickUI(size_t localPickID) {
   }
 }
 
+void SurfaceMesh::callbackHoverUI(size_t localPickID) {
+  if (localPickID < facePickIndStart) {
+    if (this->userHoverCallback) {
+      this->userHoverCallback((int)SurfacePickType::VERTEX, (int)localPickID);
+    }
+  } else if (localPickID < edgePickIndStart) {
+    if (this->userHoverCallback) {
+      this->userHoverCallback((int)SurfacePickType::FACE, (int)(localPickID - facePickIndStart));
+    }
+  } else if (localPickID < halfedgePickIndStart) {
+    if (this->userHoverCallback) {
+      this->userHoverCallback((int)SurfacePickType::EDGE, (int)(localPickID - edgePickIndStart));
+    }
+  } else if (localPickID < cornerPickIndStart) {
+    if (this->userHoverCallback) {
+      this->userHoverCallback((int)SurfacePickType::HALFEDGE, (int)(localPickID - halfedgePickIndStart));
+    }
+  }
+}
+
 glm::vec2 SurfaceMesh::projectToScreenSpace(glm::vec3 coord) {
 
   glm::mat4 viewMat = getModelView();

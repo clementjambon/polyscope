@@ -77,6 +77,7 @@ public:
   virtual void buildCustomOptionsUI() override;
   virtual void buildPickUI(size_t localPickID) override;
   virtual void callbackPickUI(size_t localPickID) override;
+  virtual void callbackHoverUI(size_t localPickID) override;
 
   // Render the the structure on screen
   virtual void draw() override;
@@ -295,6 +296,7 @@ public:
   bool isSmoothShade();
 
   void setUserPickCallback(std::function<void(int, int)> func) { userPickCallback = func; }
+  void setUserHoverCallback(std::function<void(int, int)> func) { userHoverCallback = func; }
 
 private:
   // == Mesh geometry buffers
@@ -421,6 +423,7 @@ private:
 
   // Callback when the user clicks on the mesh
   std::function<void(int, int)> userPickCallback = nullptr;
+  std::function<void(int, int)> userHoverCallback = nullptr;
 
   // clang-format on
 };
