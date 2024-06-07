@@ -46,8 +46,8 @@ bool unshowRequested = false;
 float imguiStackMargin = 10;
 float lastWindowHeightPolyscope = 200;
 float lastWindowHeightUser = 200;
-float leftWindowsWidth = 305;
-float rightWindowsWidth = 500;
+float leftWindowsWidth = 220;
+float rightWindowsWidth = 305;
 
 auto lastMainLoopIterTime = std::chrono::steady_clock::now();
 
@@ -510,24 +510,26 @@ void purgeWidgets() {
 
 void userGuiBegin() {
 
-  // ImVec2 userGuiLoc;
-  // if (options::userGuiIsOnRightSide) {
-  //   // right side
-  //   userGuiLoc = ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin), imguiStackMargin);
-  //   ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, 0.));
-  // } else {
-  //   // left side
-  //   if (options::buildDefaultGuiPanels) {
-  //     userGuiLoc = ImVec2(leftWindowsWidth + 3 * imguiStackMargin, imguiStackMargin);
-  //   } else {
-  //     userGuiLoc = ImVec2(imguiStackMargin, imguiStackMargin);
-  //   }
-  // }
+  ImVec2 userGuiLoc;
+  if (options::userGuiIsOnRightSide) {
+    // right side
+    userGuiLoc = ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin), imguiStackMargin);
+    ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, view::windowHeight - 2 * imguiStackMargin));
+  } else {
+    // left side
+    if (options::buildDefaultGuiPanels) {
+      userGuiLoc = ImVec2(leftWindowsWidth + 3 * imguiStackMargin, imguiStackMargin);
+    } else {
+      userGuiLoc = ImVec2(imguiStackMargin, imguiStackMargin);
+    }
+  }
 
   ImGui::PushID("user_callback");
-  // ImGui::SetNextWindowPos(userGuiLoc);
+  ImGui::SetNextWindowPos(userGuiLoc);
 
-  ImGui::Begin("##Command UI", nullptr);
+  static bool showUserGuiWindow = true;
+
+  ImGui::Begin("##Command UI", &showUserGuiWindow);
 }
 
 void userGuiEnd() {
@@ -538,6 +540,7 @@ void userGuiEnd() {
   } else {
     lastWindowHeightUser = 0;
   }
+
   ImGui::End();
   ImGui::PopID();
 }
@@ -667,9 +670,9 @@ void buildStructureGui() {
   // Create window
   static bool showStructureWindow = true;
 
-  // ImGui::SetNextWindowPos(ImVec2(imguiStackMargin, lastWindowHeightPolyscope + 2 * imguiStackMargin));
-  // ImGui::SetNextWindowSize(
-  //     ImVec2(leftWindowsWidth, view::windowHeight - lastWindowHeightPolyscope - 3 * imguiStackMargin));
+  ImGui::SetNextWindowPos(ImVec2(imguiStackMargin, lastWindowHeightPolyscope + 2 * imguiStackMargin));
+  ImGui::SetNextWindowSize(
+      ImVec2(leftWindowsWidth, view::windowHeight - lastWindowHeightPolyscope - 3 * imguiStackMargin));
   ImGui::Begin("Structures", &showStructureWindow);
 
   // only show groups if there are any
