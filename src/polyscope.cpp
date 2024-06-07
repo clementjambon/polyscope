@@ -47,8 +47,8 @@ bool unshowRequested = false;
 float imguiStackMargin = 10;
 float lastWindowHeightPolyscope = 200;
 float lastWindowHeightUser = 200;
-float leftWindowsWidth = 305;
-float rightWindowsWidth = 500;
+float leftWindowsWidth = 220;
+float rightWindowsWidth = 305;
 
 auto lastMainLoopIterTime = std::chrono::steady_clock::now();
 
@@ -529,7 +529,7 @@ void userGuiBegin() {
   if (options::userGuiIsOnRightSide) {
     // right side
     userGuiLoc = ImVec2(view::windowWidth - (rightWindowsWidth + imguiStackMargin), imguiStackMargin);
-    ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, 0.));
+    ImGui::SetNextWindowSize(ImVec2(rightWindowsWidth, view::windowHeight - 2 * imguiStackMargin));
   } else {
     // left side
     if (options::buildDefaultGuiPanels) {
@@ -542,7 +542,9 @@ void userGuiBegin() {
   ImGui::PushID("user_callback");
   ImGui::SetNextWindowPos(userGuiLoc);
 
-  ImGui::Begin("##Command UI", nullptr);
+  static bool showUserGuiWindow = true;
+
+  ImGui::Begin("##Command UI", &showUserGuiWindow);
 }
 
 void userGuiEnd() {
@@ -553,6 +555,7 @@ void userGuiEnd() {
   } else {
     lastWindowHeightUser = 0;
   }
+
   ImGui::End();
   ImGui::PopID();
 }
