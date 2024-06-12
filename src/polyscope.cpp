@@ -529,7 +529,7 @@ void userGuiBegin() {
 
   static bool showUserGuiWindow = true;
 
-  ImGui::Begin("##Command UI", &showUserGuiWindow);
+  ImGui::Begin("##Command UI", &showUserGuiWindow, ImGuiWindowFlags_MenuBar);
 }
 
 void userGuiEnd() {
