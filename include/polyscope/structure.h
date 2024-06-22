@@ -111,10 +111,11 @@ public:
 
   Structure* setIgnoreSlicePlane(std::string name, bool newValue);
   bool getIgnoreSlicePlane(std::string name);
-  
+
   // Additional control
   void enableTransformGizmo(bool enabled = true);
   bool isEnabledTransformGizmo();
+  void setTransformModeGizmo(TransformMode mode = TransformMode::Translation);
 
 protected:
   // = State
