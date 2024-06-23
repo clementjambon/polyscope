@@ -33,7 +33,7 @@ public:
   bool getIsPremultiplied();
 
   // Call directly ImGui image
-  void imguiImage(float w, float h);
+  void imguiImage(float w, float h, ImVec2 uv0, ImVec2 uv1);
 
 
 protected:
