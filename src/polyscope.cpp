@@ -848,16 +848,18 @@ void draw(bool withUI, bool withContextCallback) {
   }
   renderSceneToScreen();
 
+  // I consider that widgets are not really UI (in this fork)
+  render::engine->bindDisplay();
+  for (WeakHandle<Widget> wHandle : state::widgets) {
+    if (wHandle.isValid()) {
+      Widget& w = wHandle.get();
+      w.draw();
+    }
+  }
+
   // Draw the GUI
   if (withUI) {
     // render widgets
-    render::engine->bindDisplay();
-    for (WeakHandle<Widget> wHandle : state::widgets) {
-      if (wHandle.isValid()) {
-        Widget& w = wHandle.get();
-        w.draw();
-      }
-    }
 
     render::engine->bindDisplay();
     render::engine->ImGuiRender();
