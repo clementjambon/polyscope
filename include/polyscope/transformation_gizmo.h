@@ -36,7 +36,7 @@ public:
   PersistentValue<bool> enabled;
 
   // the activated transformation mode
-  TransformMode transformMode = TransformMode::Translation;
+  int transformMode = TransformMode::Translation | TransformMode::Rotation;
 
   // the main transform encoded by the gizmo
   // note that this is a reference set on construction; the gizmo wraps a transform defined somewhere else

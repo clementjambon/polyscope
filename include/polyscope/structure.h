@@ -115,7 +115,7 @@ public:
   // Additional control
   void enableTransformGizmo(bool enabled = true);
   bool isEnabledTransformGizmo();
-  void setTransformModeGizmo(TransformMode mode = TransformMode::Translation);
+  void setTransformModeGizmo(int mode = static_cast<int>(TransformMode::Translation));
 
 protected:
   // = State
